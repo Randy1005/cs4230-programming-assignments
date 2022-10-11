@@ -19,6 +19,7 @@ void pa1_hist_par(int nelts, int nbins, int *__restrict__ data, int *__restrict_
 int D[N], B[NBINS], BB[NBINS];
 
 int main(int argc, char *argv[]){
+    
   double tstart,telapsed;
   
   int i,j,k,nt,trial,max_threads,num_cases;
@@ -35,7 +36,14 @@ int main(int argc, char *argv[]){
 
   for(i=0;i<N;i++) D[i] = rand() % NBINS;
 
-  
+
+  pa1_hist_par(N, NBINS, D, BB);
+
+
+  /**
+   * remember to uncomment the actual testbench
+   */
+  /*  
   printf("Reference sequential code performance in GigaOps");
   mint_seq = 1e9; maxt_seq = 0;
   for(trial=0;trial<NTrials;trial++)
@@ -95,6 +103,8 @@ int main(int argc, char *argv[]){
   printf(" || ");
   for (nt=0;nt<num_cases;nt++) printf("%.2f ",mint_seq/maxt_par[nt]);
   printf("\n");
+
+  */
 }
 
 void compare(int nbins, int ref[], int test[], int numt)
