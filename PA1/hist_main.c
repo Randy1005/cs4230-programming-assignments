@@ -36,14 +36,11 @@ int main(int argc, char *argv[]){
 
   for(i=0;i<N;i++) D[i] = rand() % NBINS;
 
+  
+  //pa1_hist_seq(N, NBINS, D, B);
+  //pa1_hist_par(N, NBINS, D, B);
 
-  pa1_hist_par(N, NBINS, D, BB);
-
-
-  /**
-   * remember to uncomment the actual testbench
-   */
-  /*  
+  
   printf("Reference sequential code performance in GigaOps");
   mint_seq = 1e9; maxt_seq = 0;
   for(trial=0;trial<NTrials;trial++)
@@ -103,8 +100,7 @@ int main(int argc, char *argv[]){
   printf(" || ");
   for (nt=0;nt<num_cases;nt++) printf("%.2f ",mint_seq/maxt_par[nt]);
   printf("\n");
-
-  */
+    
 }
 
 void compare(int nbins, int ref[], int test[], int numt)
