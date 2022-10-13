@@ -35,11 +35,6 @@ int main(int argc, char *argv[]){
   printf("Size of Data Array = %d\n",N);
 
   for(i=0;i<N;i++) D[i] = rand() % NBINS;
-
-  
-  //pa1_hist_seq(N, NBINS, D, B);
-  //pa1_hist_par(N, NBINS, D, B);
-
   
   printf("Reference sequential code performance in GigaOps");
   mint_seq = 1e9; maxt_seq = 0;

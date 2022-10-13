@@ -3,6 +3,8 @@
 
 void pa1_hist_par(int nelts, int nbins, int *__restrict__ data, int *__restrict__ hist) 
 {
+  for (int i = 0; i < nbins; i++) hist[i] = 0;
+
   #pragma omp parallel
   {
     // define a local occurence[nbins]
@@ -39,21 +41,14 @@ void pa1_hist_par(int nelts, int nbins, int *__restrict__ data, int *__restrict_
       hist[i] += occ[i];
     }
   }
-  
-  for (int i = 0; i < nbins; i++) {
-    hist[i] >>= 1;
-  }
-
 
   /*
-  printf("Par version:\n");
+  printf("\nPar version:\n");
   for (int i = 0; i < nbins; i++) {
     printf("%d ", hist[i]);
   }
+  printf("\n");
   */
-
-
-
 
 
 }
