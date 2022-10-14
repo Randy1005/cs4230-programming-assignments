@@ -37,7 +37,6 @@ void pa1_hist_par(int nelts, int nbins, int *__restrict__ data, int *__restrict_
 
     // add local occurences to global
     for (int i = 0; i < nbins; i++) {
-      #pragma omp atomic
       hist[i] += occ[i];
     }
   }
