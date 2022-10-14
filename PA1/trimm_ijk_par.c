@@ -4,13 +4,11 @@ int i, j, k;
 
 #pragma omp parallel
  {
-#pragma omp master
-  {
+  #pragma omp for
    for (i = 0; i < n; i++)
     for (j = 0; j <= i; j++)
-     for (k = j; k <= i; k++)
+      for (k = j; k <= i; k++)
 //    c[i][j] = c[i][j] + a[i][k]*b[k][j];
       c[i*n+j]=c[i*n+j]+a[i*n+k]*b[k*n+j];
-  }
  }
 }
