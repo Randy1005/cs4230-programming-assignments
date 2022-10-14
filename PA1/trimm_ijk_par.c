@@ -4,7 +4,7 @@ int i, j, k;
 
 #pragma omp parallel
  {
-  #pragma omp for schedule(dynamic) 
+  #pragma omp for schedule(dynamic) nowait 
    for (i = 0; i < n; i++)
     for (j = 0; j <= i; j++)
       for (k = j; k <= i; k++)
