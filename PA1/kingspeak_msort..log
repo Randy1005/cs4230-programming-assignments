@@ -1,0 +1,54 @@
+List Size = 10000001
+Min/Max sequential Sort Rate: 25.3/27.0 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 64
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (Mega-Elts/second || Speedup): 27.0 50.7 50.7 50.6 50.5 50.9 50.8 48.6 49.0  || 1.0 1.9 1.9 1.9 1.9 1.9 1.9 1.8 1.8 
+Worst Performance (Mega-Elts/second || Speedup): 26.8 50.6 50.2 48.4 48.8 49.0 50.1 48.4 45.3  || 1.0 1.9 1.9 1.8 1.8 1.8 1.9 1.8 1.7 
+List Size = 10000001
+Min/Max sequential Sort Rate: 25.3/27.0 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 64
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (Mega-Elts/second || Speedup): 27.0 51.0 50.8 50.9 50.9 51.0 50.9 49.9 47.5  || 1.0 1.9 1.9 1.9 1.9 1.9 1.9 1.8 1.8 
+Worst Performance (Mega-Elts/second || Speedup): 27.0 50.9 50.8 50.8 50.6 50.8 48.8 47.7 46.2  || 1.0 1.9 1.9 1.9 1.9 1.9 1.8 1.8 1.7 
+List Size = 10000001
+Min/Max sequential Sort Rate: 25.3/26.9 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 64
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (Mega-Elts/second || Speedup): 27.0 50.9 50.9 51.0 50.9 49.7 49.5 50.0 47.3  || 1.0 1.9 1.9 1.9 1.9 1.8 1.8 1.9 1.8 
+Worst Performance (Mega-Elts/second || Speedup): 27.0 50.5 50.9 50.8 50.4 46.3 49.2 46.0 44.0  || 1.0 1.9 1.9 1.9 1.9 1.7 1.8 1.7 1.6 
+List Size = 10000001
+Min/Max sequential Sort Rate: 27.7/29.3 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 32
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (Mega-Elts/second || Speedup): 29.3 54.3 55.0 54.7 55.0 54.6 54.6 55.0 54.4  || 1.0 1.9 1.9 1.9 1.9 1.9 1.9 1.9 1.9 
+Worst Performance (Mega-Elts/second || Speedup): 29.3 52.3 51.4 52.5 53.0 53.0 53.0 53.4 50.9  || 1.0 1.8 1.8 1.8 1.8 1.8 1.8 1.8 1.7 
+List Size = 10000001
+Min/Max sequential Sort Rate: 25.8/29.3 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 32
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (Mega-Elts/second || Speedup): 28.6 51.1 54.2 54.6 54.9 54.1 54.4 55.0 54.8  || 1.0 1.7 1.8 1.9 1.9 1.8 1.9 1.9 1.9 
+Worst Performance (Mega-Elts/second || Speedup): 27.5 50.9 53.7 53.9 53.7 53.3 53.0 52.2 53.2  || 0.9 1.7 1.8 1.8 1.8 1.8 1.8 1.8 1.8 
+List Size = 10000001
+Min/Max sequential Sort Rate: 27.8/29.4 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 32
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (Mega-Elts/second || Speedup): 29.4 55.1 54.7 54.4 55.0 54.6 55.0 54.6 52.0  || 1.0 1.9 1.9 1.9 1.9 1.9 1.9 1.9 1.8 
+Worst Performance (Mega-Elts/second || Speedup): 29.4 54.6 54.2 53.1 54.5 54.1 53.8 53.9 43.1  || 1.0 1.9 1.8 1.8 1.9 1.8 1.8 1.8 1.5 
+List Size = 10000001
+Min/Max sequential Sort Rate: 27.7/29.0 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 32
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (Mega-Elts/second || Speedup): 29.6 55.8 55.3 55.4 55.4 55.4 55.4 55.3 52.6  || 1.0 1.9 1.9 1.9 1.9 1.9 1.9 1.9 1.8 
+Worst Performance (Mega-Elts/second || Speedup): 29.0 48.4 54.0 54.6 54.5 54.6 54.6 42.9 44.7  || 1.0 1.7 1.9 1.9 1.9 1.9 1.9 1.5 1.5 
+List Size = 10000001
+Min/Max sequential Sort Rate: 27.7/28.9 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 32
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (Mega-Elts/second || Speedup): 29.2 52.3 52.3 55.3 53.8 52.1 52.4 52.4 54.3  || 1.0 1.8 1.8 1.9 1.9 1.8 1.8 1.8 1.9 
+Worst Performance (Mega-Elts/second || Speedup): 29.2 52.2 52.2 41.2 49.4 49.0 52.2 52.0 51.9  || 1.0 1.8 1.8 1.4 1.7 1.7 1.8 1.8 1.8 
+List Size = 10000001
+Min/Max sequential Sort Rate: 28.3/29.9 Mega-Elements/Second
+Max Threads (from omp_get_max_threads) = 32
+Best & Worst Performance of parallelized version: Mega-Elts/second || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (Mega-Elts/second || Speedup): 29.9 55.6 55.6 55.6 55.6 55.6 55.3 55.4 52.1  || 1.0 1.9 1.9 1.9 1.9 1.9 1.9 1.9 1.7 
+Worst Performance (Mega-Elts/second || Speedup): 29.9 55.6 55.5 55.3 55.3 55.5 55.2 53.4 50.7  || 1.0 1.9 1.9 1.9 1.9 1.9 1.8 1.8 1.7 
