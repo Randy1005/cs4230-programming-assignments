@@ -40,25 +40,5 @@ void pa1_hist_par(int nelts, int nbins, int *__restrict__ data, int *__restrict_
       hist[i] += occ[i];
     }
   }
-
-  /*
-  printf("\nPar version:\n");
-  for (int i = 0; i < nbins; i++) {
-    printf("%d ", hist[i]);
-  }
-  printf("\n");
-  */
-	
-	/*	
-	int i;
-	for (i=0;i<nbins;i++) hist[i]=0;
-	
-	#pragma omp parallel for
-	for (i = 0; i < nelts; i++) 
-	{
-		#pragma omp atomic
-		hist[data[i]] += 1;
-	}
-	*/
-
+ 
 }
