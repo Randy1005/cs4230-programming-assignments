@@ -5,7 +5,7 @@ int i, j, k;
 #pragma omp parallel private(i,j,k) 
 {
 	for(k = 0; k < n; k++)
-	#pragma omp for
+	#pragma omp for schedule(static)
 		for(i=0;i<n;i++)
 			for(j=0;j<n;j++)
 //    c[i][j] = c[i][j] + a[k][j]*b[k][i];
