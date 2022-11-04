@@ -8,11 +8,11 @@
 #SBATCH -c 16
 #SBATCH --exclusive
 #SBATCH -t 0:05:00
-#SBATCH --nodelist=kp067
+#SBATCH --nodelist=kp077
 lscpu
 echo "mmt trial 1"
-./mmt | tee -a kingspeak_msort.$SLURM_JOB_ID\.log
+./mmt | tee -a kingspeak_mmt.$SLURM_JOB_ID\.log
 echo "mmt trial 2"
-./mmt | tee -a kingspeak_msort.$SLURM_JOB_ID\.log
+./mmt | tee -a kingspeak_mmt.$SLURM_JOB_ID\.log
 echo "mmt trial 3"
-./mmt | tee -a kingspeak_msort.$SLURM_JOB_ID\.log
+./mmt | tee -a kingspeak_mmt.$SLURM_JOB_ID\.log

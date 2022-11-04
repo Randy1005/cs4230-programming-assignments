@@ -7,7 +7,6 @@ void mv2_par(int n, double *__restrict__ m, double *__restrict__ x, double *__re
 {
 	#pragma omp for
   for (j = 0; j < n; j++) {
-		#pragma simd
 		for (i = 0; i < rem; i++) {
 //    y[j] = y[j] + m[i][j] * x[i];
 //    z[j] = z[j] + m[j][i] * x[i];
@@ -15,7 +14,6 @@ void mv2_par(int n, double *__restrict__ m, double *__restrict__ x, double *__re
       z[j] = z[j] + m[j*n+i] * x[i];
 		}
 
-		#pragma simd
 		for (i = rem; i < n; i+=4) {
       y[j] = y[j] + m[i*n+j] * x[i];
       z[j] = z[j] + m[j*n+i] * x[i];

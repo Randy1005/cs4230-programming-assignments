@@ -1,0 +1,36 @@
+Matrix Size = 401; NTrials=5
+Reference sequential code performance in GFLOPS Min: 0.24; Max: 0.24
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS): 3.19 6.34 13.27 28.04 33.55 40.68 41.07 42.92 38.36 
+Worst Performance (GFLOPS): 3.13 6.24 13.09 27.36 31.87 2.18 1.79 41.80 0.45 
+Matrix Size = 401; NTrials=5
+Reference sequential code performance in GFLOPS Min: 0.24; Max: 0.24
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS): 3.24 6.33 12.86 29.16 34.02 40.85 36.81 42.75 38.03 
+Worst Performance (GFLOPS): 3.23 6.29 12.69 26.62 3.08 39.65 1.95 1.66 1.42 
+Matrix Size = 401; NTrials=5
+Reference sequential code performance in GFLOPS Min: 0.23; Max: 0.24
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS): 3.22 6.19 12.70 14.53 18.92 22.81 27.31 28.72 38.94 
+Worst Performance (GFLOPS): 3.20 5.93 12.01 6.82 2.02 1.87 1.67 1.61 1.58 
+Matrix Size = 401; NTrials=5
+Reference sequential code performance in GFLOPS Min: 0.24; Max: 0.24
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS): 3.23 6.30 12.83 26.78 34.22 40.65 40.58 29.26 38.87 
+Worst Performance (GFLOPS): 3.22 6.28 12.65 25.36 2.45 37.78 1.79 1.63 0.43 
+Matrix Size = 401; NTrials=5
+Reference sequential code performance in GFLOPS Min: 0.24; Max: 0.24
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS): 3.22 6.29 12.71 28.38 33.94 40.37 40.86 42.32 38.04 
+Worst Performance (GFLOPS): 3.21 6.21 12.49 27.32 3.07 39.52 1.84 1.82 1.45 
+Matrix Size = 401; NTrials=5
+Reference sequential code performance in GFLOPS Min: 0.22; Max: 0.24
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS): 3.26 6.32 12.95 29.86 33.98 40.69 28.26 29.96 38.38 
+Worst Performance (GFLOPS): 3.23 6.29 12.65 28.55 30.80 2.04 1.69 29.28 1.42 
