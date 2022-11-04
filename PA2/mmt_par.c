@@ -23,7 +23,7 @@ int remainder = n % 4;
 				c[i*n+ (j + 3)]=c[i*n+ (j + 3)]+a[k*n+(j + 3)]*b[k*n+i];
 			}
 			*/
-			#pragma omp unroll
+			#pragma omp unroll partial(8)
 			for (j = 0; j < n; j++)
 				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
 		}
