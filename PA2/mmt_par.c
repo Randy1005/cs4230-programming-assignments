@@ -2,13 +2,12 @@ void mmt_par(int n, double *__restrict__ a, double *__restrict__ b,
                  double *__restrict__ c) {
 int i, j, k;
 
-int remainder = n % 4;
 
 #pragma omp parallel private(i,j,k) 
 {
 	for(k = 0; k < n; k++)
-	// #pragma omp for schedule(static)
-		#pragma omp for 
+		#pragma omp for schedule(static)
+		#pragma omp unroll partial(4)
 		for(i=0;i<n;i++) {
 			/*
 			for (j = 0; j < remainder; j++) {
@@ -23,7 +22,7 @@ int remainder = n % 4;
 				c[i*n+ (j + 3)]=c[i*n+ (j + 3)]+a[k*n+(j + 3)]*b[k*n+i];
 			}
 			*/
-			#pragma omp unroll partial(8)
+			#pragma omp unroll partial(4)
 			for (j = 0; j < n; j++)
 				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
 		}
