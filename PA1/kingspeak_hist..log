@@ -1,0 +1,93 @@
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.23; Max: 1.24
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.24 2.43 4.80 9.37 11.89 18.55 25.72 25.67 42.29  || 1.00 1.96 3.88 7.57 9.62 15.00 20.80 20.76 34.21 
+Worst Performance (GFLOPS || Speedup): 1.23 2.37 4.45 7.86 10.13 11.08 13.22 11.31 0.03  || 0.99 1.92 3.60 6.35 8.19 8.96 10.69 9.15 0.02 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.22; Max: 1.25
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.25 2.45 4.82 9.53 11.79 17.48 25.19 24.95 42.87  || 1.00 1.96 3.85 7.61 9.42 13.97 20.13 19.94 34.26 
+Worst Performance (GFLOPS || Speedup): 1.24 2.39 4.53 7.91 7.76 10.63 12.53 0.36 0.05  || 0.99 1.91 3.62 6.32 6.20 8.49 10.02 0.29 0.04 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.23; Max: 1.25
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.25 2.45 4.83 9.39 11.64 17.73 25.30 25.18 41.84  || 1.00 1.95 3.85 7.49 9.29 14.16 20.20 20.10 33.40 
+Worst Performance (GFLOPS || Speedup): 1.24 2.40 4.55 7.89 10.11 11.52 13.13 0.45 0.05  || 0.99 1.92 3.63 6.30 8.07 9.19 10.48 0.36 0.04 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.21; Max: 1.23
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.24 2.45 4.84 9.59 11.42 17.55 25.09 25.15 0.10  || 1.00 1.99 3.93 7.78 9.28 14.25 20.38 20.43 0.08 
+Worst Performance (GFLOPS || Speedup): 1.22 2.39 4.49 7.83 9.24 12.38 12.58 10.82 0.03  || 0.99 1.94 3.65 6.36 7.51 10.05 10.22 8.79 0.03 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.21; Max: 1.24
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.23 2.43 4.77 9.46 11.92 17.62 24.73 25.04 0.10  || 0.99 1.96 3.86 7.65 9.65 14.25 20.01 20.26 0.08 
+Worst Performance (GFLOPS || Speedup): 1.21 2.35 4.46 7.98 10.04 12.63 13.21 11.14 0.04  || 0.98 1.90 3.61 6.46 8.13 10.22 10.69 9.01 0.03 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.22; Max: 1.23
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.23 2.44 4.81 9.53 11.76 18.78 25.46 24.88 23.74  || 1.00 1.99 3.91 7.75 9.56 15.26 20.69 20.22 19.30 
+Worst Performance (GFLOPS || Speedup): 1.22 2.40 4.49 7.90 9.62 10.98 14.13 0.52 0.03  || 1.00 1.95 3.65 6.42 7.82 8.93 11.49 0.42 0.03 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.21; Max: 1.24
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.25 2.38 4.68 9.50 12.11 18.39 25.93 24.91 0.05  || 1.00 1.92 3.78 7.66 9.76 14.82 20.90 20.08 0.04 
+Worst Performance (GFLOPS || Speedup): 1.20 2.32 4.43 7.68 8.93 9.98 11.46 10.69 0.03  || 0.97 1.87 3.57 6.19 7.20 8.04 9.24 8.61 0.02 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.21; Max: 1.22
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.22 2.26 4.84 9.59 12.13 18.13 25.18 25.34 0.05  || 1.00 1.85 3.97 7.87 9.96 14.88 20.66 20.80 0.04 
+Worst Performance (GFLOPS || Speedup): 1.21 2.15 3.78 6.74 9.12 10.80 11.92 0.52 0.03  || 0.99 1.76 3.10 5.53 7.48 8.86 9.79 0.42 0.02 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.23; Max: 1.23
+Max Threads (from omp_get_max_threads) = 64
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/15/20/31/63 threads
+Best Performance (GFLOPS || Speedup): 1.24 2.43 4.80 9.45 11.71 17.81 25.03 25.04 41.22  || 1.00 1.97 3.89 7.66 9.49 14.44 20.30 20.30 33.42 
+Worst Performance (GFLOPS || Speedup): 1.23 2.36 4.50 7.78 9.88 12.49 12.65 0.37 0.10  || 1.00 1.92 3.65 6.31 8.01 10.13 10.26 0.30 0.08 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.16; Max: 1.16
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS || Speedup): 1.16 2.30 4.41 8.93 10.36 7.86 8.81 9.34 1.99  || 1.00 1.98 3.80 7.68 8.91 6.76 7.58 8.03 1.71 
+Worst Performance (GFLOPS || Speedup): 1.15 2.19 2.89 6.23 8.89 6.98 7.69 0.23 0.11  || 0.99 1.88 2.49 5.36 7.65 6.01 6.62 0.20 0.10 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.08; Max: 1.16
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS || Speedup): 1.15 2.29 4.49 8.33 11.10 7.98 9.03 9.46 3.43  || 1.00 1.98 3.88 7.21 9.60 6.91 7.81 8.18 2.97 
+Worst Performance (GFLOPS || Speedup): 1.13 2.22 3.98 6.70 7.56 6.99 8.00 0.20 0.12  || 0.97 1.92 3.44 5.80 6.54 6.05 6.92 0.17 0.10 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.15; Max: 1.16
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS || Speedup): 1.16 2.30 4.50 8.40 10.68 8.00 8.68 9.48 1.90  || 1.00 1.98 3.88 7.23 9.19 6.88 7.47 8.16 1.64 
+Worst Performance (GFLOPS || Speedup): 1.16 2.25 2.93 6.68 8.33 7.11 7.54 8.52 0.12  || 1.00 1.93 2.52 5.75 7.17 6.12 6.49 7.33 0.11 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.16; Max: 1.16
+Max Threads (from omp_get_max_threads) = 32
+Error when executing on 15 threads; 16 differences found
+Error when executing on 31 threads; 16 differences found
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS || Speedup): 1.16 2.30 4.51 8.46 10.86 13.17 15.71 16.58 15.97  || 1.00 1.98 3.88 7.28 9.35 11.34 13.53 14.28 13.75 
+Worst Performance (GFLOPS || Speedup): 1.16 2.23 4.24 7.19 8.41 10.41 12.08 14.19 0.38  || 1.00 1.92 3.66 6.19 7.24 8.97 10.40 12.22 0.33 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.15; Max: 1.16
+Max Threads (from omp_get_max_threads) = 32
+Error when executing on 31 threads; 16 differences found
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS || Speedup): 1.16 2.30 4.48 8.57 10.54 13.12 15.82 16.97 18.63  || 1.00 1.98 3.87 7.40 9.10 11.32 13.65 14.65 16.08 
+Worst Performance (GFLOPS || Speedup): 1.16 2.22 4.24 6.95 9.15 10.26 11.81 13.55 1.34  || 1.00 1.92 3.66 6.00 7.89 8.85 10.20 11.70 1.15 
+Size of Data Array = 10000000
+Reference sequential code performance in GigaOps Min: 1.16; Max: 1.16
+Max Threads (from omp_get_max_threads) = 32
+Performance (Best & Worst) of parallelized version: GFLOPS || Speedup on 1/2/4/8/10/12/14/15/31 threads
+Best Performance (GFLOPS || Speedup): 1.16 2.30 4.48 8.49 10.63 13.28 15.83 16.98 18.74  || 1.00 1.97 3.85 7.30 9.14 11.42 13.61 14.60 16.11 
+Worst Performance (GFLOPS || Speedup): 1.16 2.18 3.89 7.22 8.57 10.50 12.01 14.22 0.14  || 1.00 1.88 3.35 6.21 7.37 9.03 10.33 12.23 0.12 
