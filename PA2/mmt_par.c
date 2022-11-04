@@ -7,9 +7,10 @@ int remainder = n % 4;
 #pragma omp parallel private(i,j,k) 
 {
 	for(k = 0; k < n; k++)
-	#pragma omp for schedule(static)
+	// #pragma omp for schedule(static)
+		#pragma omp for 
 		for(i=0;i<n;i++) {
-			
+			/*
 			for (j = 0; j < remainder; j++) {
 				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
 			}
@@ -21,6 +22,10 @@ int remainder = n % 4;
 				c[i*n+ (j + 2)]=c[i*n+ (j + 2)]+a[k*n+(j + 2)]*b[k*n+i];
 				c[i*n+ (j + 3)]=c[i*n+ (j + 3)]+a[k*n+(j + 3)]*b[k*n+i];
 			}
+			*/
+			#pragma omp unroll
+			for (j = 0; j < n; j++)
+				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
 		}
 
 }
