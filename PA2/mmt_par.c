@@ -6,7 +6,7 @@ int rem = n % 4;
 // #pragma omp parallel private(i, j, k)
 {
 	for(k = 0; k < n; k++) {
-		#pragma omp parallel for private(i, j) 
+		#pragma omp parallel for
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < n; j++) {
 				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
@@ -15,7 +15,7 @@ int rem = n % 4;
 			for (j = 0; j < rem; j++) {
 				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
 			}
-				
+			
 			for (j = rem; j < n; j += 4) {
 				c[i*n+j]=c[i*n+j]+a[k*n+j]*b[k*n+i];
 				c[i*n+(j+1)]=c[i*n+(j+1)]+a[k*n+(j+1)]*b[k*n+i];
