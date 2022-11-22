@@ -21,7 +21,28 @@ void checkCUDAError(const char *msg);
 
 __global__ void stencil_1d(int *in, int *out, int N) 
 {
-// Enter code here
+	__shared__ int tmp[BLOCK_SIZE + 2 * RADIUS];
+
+	// g : linearized thread index across all threads
+	int g = blockDim.x * blockIdx.x + threadIdx.x;
+	int l = threadIdx.x + RADIUS;
+
+	// read input into shared memory
+	tmp[l] = in[g];
+	if (threadIdx.x < RADIUS) {
+		tmp[l - RADIUS] = in[g - RADIUS];
+		tmp[l + BLOCK_SIZE] = in[g + BLOCK_SIZE];
+	}
+
+	__syncthreads();
+
+	// calculate stencil
+	int sum = 0;
+	for (int r = -RADIUS; r <= RADIUS; r++) {
+		sum += tmp[l + r];
+	}
+
+	out[g] = sum;
 }
 
 int main()
@@ -46,16 +67,17 @@ int main()
   checkCUDAError("cudaMalloc");
 
   // Copy input data to device
-  cudaMemcpy( d_in, h_in, (NUM_ELEMENTS + 2*RADIUS) * sizeof(int), cudaMemcpyHostToDevice);
+	cudaMemcpy( d_in, h_in, (NUM_ELEMENTS + 2*RADIUS) * sizeof(int), cudaMemcpyHostToDevice);
   checkCUDAError("cudaMemcpy");
 
   // Fix the FIXME's
-  stencil_1d<<< FIXME1,FIXME2 >>> (d_in, d_out,NUM_ELEMENTS);
+  // stencil_1d<<<1, BLOCK_SIZE>>> (d_in, d_out,NUM_ELEMENTS);
   checkCUDAError("Kernel Launch Error:");
 
   cudaMemcpy( h_out, d_out, NUM_ELEMENTS * sizeof(int), cudaMemcpyDeviceToHost);
   checkCUDAError("cudaMalloc");
 
+	/*
   for( i = 0; i < NUM_ELEMENTS; ++i )
     if (h_ref[i] != h_out[i])
     {
@@ -69,6 +91,7 @@ int main()
   cudaFree(d_in);
   cudaFree(d_out);
 
+	*/
   return 0;
 }
 
