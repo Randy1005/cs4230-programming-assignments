@@ -10,7 +10,7 @@
 
 void checkCUDAError(const char *msg);
 
-const int DSIZE = 1024;
+const int DSIZE = 2048;
 cudaEvent_t start, stop;
 float tstart, elapsedTime;
 
@@ -23,8 +23,9 @@ __global__ void mmul(const double *A, const double *B, double *C, int ds) {
 		double sum = 0;
 		for (int k = 0; k < ds; k++) {
 			sum += A[k * ds + row] * B[col * ds + k];
-			C[row * ds + col] = sum;
 		}
+		
+    C[row * ds + col] = sum;
 	}
 
 }

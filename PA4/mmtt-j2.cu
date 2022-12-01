@@ -2,55 +2,35 @@
 
 #include <stdio.h>
 #include <time.h>
-#include <assert.h>
 #define threshold 0.0000001
 #define FIXME1 1
 #define FIXME2 2
 #define FIXME3 3
 #define FIXME4 4
-#define BLOCK_SIZE 16 
 
 void checkCUDAError(const char *msg);
 
-const int DSIZE = 2048;
+const int DSIZE = 1024;
 cudaEvent_t start, stop;
 float tstart, elapsedTime;
 
 // matrix multiply kernel: C = A * B
 __global__ void mmul(const double *A, const double *B, double *C, int ds) {
-  int tx = threadIdx.x;
-  int ty = threadIdx.y;
-  int bx = blockIdx.x;
-  int by = blockIdx.y;
-  __shared__ double as[BLOCK_SIZE][BLOCK_SIZE];
-  __shared__ double bs[BLOCK_SIZE][BLOCK_SIZE];
-  double sum = 0;
+	int col = blockDim.x * blockIdx.x * 2 + threadIdx.x;
+	int row = blockDim.y * blockIdx.y + threadIdx.y;
 
-  int a_begin = BLOCK_SIZE * by;
-  int b_begin = ds * BLOCK_SIZE * bx;
-  int a_idx = a_begin + ds * ty + tx;
-  int b_idx = b_begin + ds * ty + tx;
+	if ((row < ds) && (col < ds)) {
+		double sum0 = 0;
+    double sum1 = 0;
+		for (int k = 0; k < ds; k++) {
+			sum0 += A[k * ds + row] * B[col * ds + k];
+			sum1 += A[k * ds + row] * B[(col + 1) * ds + k];
+		}
+		
+    C[row * ds + col] = sum0;
+    C[row * ds + (col + 1)] = sum1;
+	}
 
-  assert(a_idx < ds * ds); 
-  assert(b_idx < ds * ds); 
-
-  if ((tx < ds) && (ty < ds)) {
-    for (int kt = 0; kt < ds; kt+=BLOCK_SIZE) {
-      as[ty][tx] = A[a_idx];
-      bs[ty][tx] = B[b_idx];
-      __syncthreads();
-
-      for (int k = 0; k < BLOCK_SIZE; k++) {
-        sum += as[k][ty] * bs[tx][k];
-      }
-      __syncthreads();
-      a_idx += BLOCK_SIZE * ds;
-      b_idx += BLOCK_SIZE;
-    } 
-    
-    int c_begin = ds * BLOCK_SIZE * by + BLOCK_SIZE * bx;
-    C[c_begin + ds * ty + tx] = sum;
-  }
 }
 
 int main(){
@@ -93,7 +73,7 @@ int main(){
   if ((Bx==0) or (By==0)) break;
   block.x = Bx;
   block.y = By;
-  grid.x = DSIZE / block.x;
+  grid.x = (DSIZE / 2) / block.x;
   grid.y = DSIZE / block.y;
 
   for(int trial=0;trial<5;trial++)
