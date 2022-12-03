@@ -16,10 +16,8 @@ float tstart, elapsedTime;
 
 // matrix multiply kernel: C = A * B
 __global__ void mmul(const double *A, const double *B, double *C, int ds) {
-// Enter GPU kernel code body
-
-  int col = blockDim.x * 2 *blockIdx.x+threadIdx.x; // create thread x index
-  int row = (blockDim.y*blockIdx.y+threadIdx.y) * 2; // create thread y index
+  int col = blockDim.x * 2 *blockIdx.x+threadIdx.x; 
+  int row = (blockDim.y*blockIdx.y+threadIdx.y) * 2;
 
   if ((col < ds) && (row < ds)){
     double sum0 = 0;
@@ -38,7 +36,7 @@ __global__ void mmul(const double *A, const double *B, double *C, int ds) {
 
       sum3 += A[k*ds+col + blockDim.x] * B[(row+1)*ds+k];
       sum3 += A[(k+1)*ds+col + blockDim.x] * B[(row+1)*ds+(k+1)];
-    }   // dot product of row and column
+    }
     C[col*ds+row] = sum0;
     C[col*ds+(row+1)] = sum1;
     C[(col+blockDim.x)*ds+row] = sum2;
