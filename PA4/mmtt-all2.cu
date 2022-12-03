@@ -10,7 +10,7 @@
 
 void checkCUDAError(const char *msg);
 
-const int DSIZE = 1024;
+const int DSIZE = 2048;
 cudaEvent_t start, stop;
 float tstart, elapsedTime;
 
@@ -18,31 +18,31 @@ float tstart, elapsedTime;
 __global__ void mmul(const double *A, const double *B, double *C, int ds) {
 // Enter GPU kernel code body
 
-  int idx = blockDim.x * 2 *blockIdx.x+threadIdx.x; // create thread x index
-  int idy = (blockDim.y*blockIdx.y+threadIdx.y) * 2; // create thread y index
+  int col = blockDim.x * 2 *blockIdx.x+threadIdx.x; // create thread x index
+  int row = (blockDim.y*blockIdx.y+threadIdx.y) * 2; // create thread y index
 
-  if ((idx < ds) && (idy < ds)){
-    double temp1 = 0;
-    double temp2 = 0;
-    double temp3 = 0;
-    double temp4 = 0;
+  if ((col < ds) && (row < ds)){
+    double sum0 = 0;
+    double sum1 = 0;
+    double sum2 = 0;
+    double sum3 = 0;
     for (int k = 0; k < ds; k+=2) {
-      temp1 += A[k*ds+idx] * B[idy*ds+k];
-      temp1 += A[(k+1)*ds+idx] * B[idy*ds+(k+1)];
+      sum0 += A[k*ds+col] * B[row*ds+k];
+      sum0 += A[(k+1)*ds+col] * B[row*ds+(k+1)];
 
-      temp2 += A[k*ds+idx] * B[(idy+1)*ds+k];
-      temp2 += A[(k+1)*ds+idx] * B[(idy+1)*ds+(k+1)];
+      sum1 += A[k*ds+col] * B[(row+1)*ds+k];
+      sum1 += A[(k+1)*ds+col] * B[(row+1)*ds+(k+1)];
 
-      temp3 += A[k*ds+idx + blockDim.x] * B[idy*ds+k];
-      temp3 += A[(k+1)*ds+idx + blockDim.x] * B[idy*ds+(k+1)];
+      sum2 += A[k*ds+col + blockDim.x] * B[row*ds+k];
+      sum2 += A[(k+1)*ds+col + blockDim.x] * B[row*ds+(k+1)];
 
-      temp4 += A[k*ds+idx + blockDim.x] * B[(idy+1)*ds+k];
-      temp4 += A[(k+1)*ds+idx + blockDim.x] * B[(idy+1)*ds+(k+1)];
+      sum3 += A[k*ds+col + blockDim.x] * B[(row+1)*ds+k];
+      sum3 += A[(k+1)*ds+col + blockDim.x] * B[(row+1)*ds+(k+1)];
     }   // dot product of row and column
-    C[idx*ds+idy] = temp1;
-    C[idx*ds+(idy+1)] = temp2;
-    C[(idx+blockDim.x)*ds+idy] = temp3;
-    C[(idx+blockDim.x)*ds+(idy+1)] = temp4;
+    C[col*ds+row] = sum0;
+    C[col*ds+(row+1)] = sum1;
+    C[(col+blockDim.x)*ds+row] = sum2;
+    C[(col+blockDim.x)*ds+(row+1)] = sum3;
   }
 }
 
