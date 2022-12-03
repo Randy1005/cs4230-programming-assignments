@@ -10,7 +10,7 @@
 
 void checkCUDAError(const char *msg);
 
-const int DSIZE = 1024;
+const int DSIZE = 2048;
 cudaEvent_t start, stop;
 float tstart, elapsedTime;
 
