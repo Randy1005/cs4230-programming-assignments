@@ -16,8 +16,9 @@ float tstart, elapsedTime;
 
 // matrix multiply kernel: C = A * B
 __global__ void mmul(const double *A, const double *B, double *C, int ds) {
-	int col = blockDim.x * blockIdx.x * 2 + threadIdx.x;
-	int row = blockDim.y * blockIdx.y + threadIdx.y;
+	int col = blockDim.x * blockIdx.x + threadIdx.x;
+	col *= 2;
+  int row = blockDim.y * blockIdx.y + threadIdx.y;
 
 	if ((row < ds) && (col < ds)) {
 		double sum0 = 0;
