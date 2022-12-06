@@ -2,9 +2,7 @@
 void mv2_par(int n, double *__restrict__ m, double *__restrict__ x, double *__restrict__ y, double *__restrict__ z)
 {
   int i, j;
-	int rem = n % 4;
 
-	
 {
 	#pragma omp parallel private(i, j)
   for (i = 0; i < n; i++) {

@@ -9,6 +9,7 @@ void checkCUDAError(const char *msg);
 #define RADIUS        3
 #define BLOCK_SIZE    256
 #define NUM_ELEMENTS  (4097*257)
+// #define NUM_ELEMENTS 4096
 #define FIXME1 32
 #define FIXME2 32
 
@@ -21,17 +22,29 @@ void checkCUDAError(const char *msg);
 
 __global__ void stencil_1d(int *in, int *out, int N) 
 {
-	__shared__ int tmp[BLOCK_SIZE + 2 * RADIUS];
+	__shared__ int tmp[512 + 2 * RADIUS];
 
 	// g : linearized thread index across all threads
 	int g = blockDim.x * blockIdx.x + threadIdx.x;
+	
+	// l : shared memory index
 	int l = threadIdx.x + RADIUS;
 
 	// read input into shared memory
-	tmp[l] = in[g];
-	if (threadIdx.x < RADIUS) {
-		tmp[l - RADIUS] = in[g - RADIUS];
-		tmp[l + BLOCK_SIZE] = in[g + BLOCK_SIZE];
+	if (g < N) {
+		if (threadIdx.x == 0) {
+			tmp[l - RADIUS] = in[g];
+			tmp[l - RADIUS + 1] = in[g + 1];
+			tmp[l - RADIUS + 2] = in[g + 2];
+		}
+
+		if (threadIdx.x == 511 || g == N - 1) {
+			tmp[l + 1] = in[g + RADIUS + 1];
+			tmp[l + 2] = in[g + RADIUS + 2];
+			tmp[l + 3] = in[g + RADIUS + 3];
+		}
+		
+		tmp[l] = in[g + RADIUS];
 	}
 
 	__syncthreads();
@@ -48,8 +61,12 @@ __global__ void stencil_1d(int *in, int *out, int N)
 int main()
 {
   int i,r;
-  int h_in[NUM_ELEMENTS + 2 * RADIUS], h_out[NUM_ELEMENTS], h_ref[NUM_ELEMENTS];
   int *d_in, *d_out;
+	int *h_in, *h_out, *h_ref;
+
+	h_in = (int*)malloc(sizeof(int) * (NUM_ELEMENTS + 2 * RADIUS));
+	h_out = (int*)malloc(sizeof(int) * NUM_ELEMENTS);
+	h_ref = (int*)malloc(sizeof(int) * NUM_ELEMENTS);
 
   // Initialize host data
   for(i = 0; i < (NUM_ELEMENTS + 2*RADIUS); i++ )
@@ -71,13 +88,14 @@ int main()
   checkCUDAError("cudaMemcpy");
 
   // Fix the FIXME's
-  // stencil_1d<<<1, BLOCK_SIZE>>> (d_in, d_out,NUM_ELEMENTS);
+  
+	int num_blk = (NUM_ELEMENTS + 512 - 1) / 512;
+	stencil_1d<<<num_blk, 512>>> (d_in, d_out,NUM_ELEMENTS);
   checkCUDAError("Kernel Launch Error:");
 
   cudaMemcpy( h_out, d_out, NUM_ELEMENTS * sizeof(int), cudaMemcpyDeviceToHost);
   checkCUDAError("cudaMalloc");
 
-	/*
   for( i = 0; i < NUM_ELEMENTS; ++i )
     if (h_ref[i] != h_out[i])
     {
@@ -91,7 +109,6 @@ int main()
   cudaFree(d_in);
   cudaFree(d_out);
 
-	*/
   return 0;
 }
 
