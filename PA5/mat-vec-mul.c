@@ -76,12 +76,20 @@ void mvpar(int n, double m[][n], double x[n], double y[n])
 // FIXME: Initially identical to reference; make your changes to parallelize this code
 { int i,j,iter;
 
+  // n is a multiple of 2, 4, 8, 16
+  int rows = n / nprocs;
+
   for(i=0;i<n;i++) { y[i]=0.0; }
   for(iter=0;iter<Niter;iter++)
     {
-      for(i=0;i<n;i++)
-	for(j=0;j<n;j++)
+      for(i=0;i<n;i++) {
+	for(j = myid * rows; j < (myid + 1) * rows ;j++)
 	  y[i] = y[i] + m[i][j]*x[j];
+        
+	printf("myid = %d, sum = %d\n", myid, y[i]);
+      }
+      
+
       for (i=0; i<N; i++) x[i] = sqrt(y[i]);
     }
 }
