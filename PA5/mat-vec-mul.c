@@ -73,7 +73,6 @@ void mvseq(int n, double m[][n], double x[n], double y[n])
 }
 
 void mvpar(int n, double m[][n], double x[n], double y[n])
-// FIXME: Initially identical to reference; make your changes to parallelize this code
 { int i,j,iter;
 
   // n is a multiple of 2, 4, 8, 16
