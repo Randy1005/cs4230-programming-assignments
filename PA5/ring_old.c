@@ -29,7 +29,7 @@ double *in,*out;
   for(m = 0 ; m < 8 ; m++)
   {
     MsgLen = msgLen[m];
-    Niter = 10000000 / (1000 + MsgLen);
+    Niter = 1000000 / (100 + MsgLen);
     MPI_Barrier(MPI_COMM_WORLD);
 
     clkbegin = MPI_Wtime();
@@ -50,7 +50,6 @@ double *in,*out;
           MsgLen,2.0*1e-9*sizeof(double)*MsgLen*nprocs*Niter/tmax,tmax);
     }
   }
- free(in);
- free(out);
- MPI_Finalize();
+
+  MPI_Finalize();
 }
