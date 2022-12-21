@@ -13,7 +13,8 @@ double rtclock();
 int i,it,m;
 int myid, nprocs;
 int MsgLen,MaxMsgLen,Niter;
-MPI_Status status;
+MPI_Status stats[4];
+MPI_Request reqs[4];
 double *in,*out;
 
   MPI_Init( &argc, &argv );
@@ -28,16 +29,17 @@ double *in,*out;
   for(m = 0 ; m < 8 ; m++)
   {
     MsgLen = msgLen[m];
-    Niter = 1000000 / (100 + MsgLen);
+    Niter = 10000000 / (1000 + MsgLen);
     MPI_Barrier(MPI_COMM_WORLD);
 
     clkbegin = MPI_Wtime();
     for(it=0;it<nprocs*Niter;it++) 
     {
-     MPI_Send(out,MsgLen,MPI_DOUBLE,(myid+1)%nprocs,0,MPI_COMM_WORLD);
-     MPI_Recv(in,MsgLen,MPI_DOUBLE,(myid+nprocs-1)%nprocs,0,MPI_COMM_WORLD,&status);
-     MPI_Send(in,MsgLen,MPI_DOUBLE,(myid+1)%nprocs,0,MPI_COMM_WORLD);
-     MPI_Recv(out,MsgLen,MPI_DOUBLE,(myid+nprocs-1)%nprocs,0,MPI_COMM_WORLD,&status);
+     	MPI_Isend(out,MsgLen,MPI_DOUBLE,(myid+1)%nprocs,0,MPI_COMM_WORLD, &reqs[0]);
+     	MPI_Irecv(in,MsgLen,MPI_DOUBLE,(myid+nprocs-1)%nprocs,0,MPI_COMM_WORLD,&reqs[1]);
+     	MPI_Isend(in,MsgLen,MPI_DOUBLE,(myid+1)%nprocs,0,MPI_COMM_WORLD, &reqs[2]);
+     	MPI_Irecv(out,MsgLen,MPI_DOUBLE,(myid+nprocs-1)%nprocs,0,MPI_COMM_WORLD,&reqs[3]);
+    	MPI_Waitall(4, reqs, stats);
     }
     clkend = MPI_Wtime();
     t = clkend-clkbegin;
@@ -48,4 +50,7 @@ double *in,*out;
           MsgLen,2.0*1e-9*sizeof(double)*MsgLen*nprocs*Niter/tmax,tmax);
     }
   }
+ free(in);
+ free(out);
+ MPI_Finalize();
 }

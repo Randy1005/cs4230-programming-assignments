@@ -26,12 +26,52 @@ int main(int argc, char* argv[]){
    for(int i=0;i <nIter;i++){
 // Use blocking send recv
    if (rank==0){
-    //
-    // FIXME
+   	MPI_Send(sBuff, count, MPI_DOUBLE,
+		1,
+		1, // somehow using ANY_TAG for send causes tag error
+		MPI_COMM_WORLD);
+
+
+   	MPI_Recv(rBuff, count, MPI_DOUBLE,
+		1,
+		1,
+		MPI_COMM_WORLD,
+		MPI_STATUS_IGNORE);
+
+   	MPI_Send(sBuff, count, MPI_DOUBLE,
+		1,
+		1, // somehow using ANY_TAG for send causes tag error
+		MPI_COMM_WORLD);
+   	
+	MPI_Recv(rBuff, count, MPI_DOUBLE,
+		1,
+		1,
+		MPI_COMM_WORLD,
+		MPI_STATUS_IGNORE);
    }
    else if (rank==1){
-    //
-    // FIXME
+   	MPI_Recv(rBuff, count, MPI_DOUBLE,
+		0,
+		1,
+		MPI_COMM_WORLD,
+		MPI_STATUS_IGNORE);
+
+
+   	MPI_Send(sBuff, count, MPI_DOUBLE,
+		0,
+		1,
+		MPI_COMM_WORLD);
+   	
+	MPI_Recv(rBuff, count, MPI_DOUBLE,
+		0,
+		1,
+		MPI_COMM_WORLD,
+		MPI_STATUS_IGNORE);
+   	
+	MPI_Send(sBuff, count, MPI_DOUBLE,
+		0,
+		1,
+		MPI_COMM_WORLD);
    }
   }
   if(rank == 0){

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "mpi.h"
-#define N 8192
+#define N 8192 
 #define Niter 10
 #define threshold 0.0000001
 
@@ -73,17 +73,36 @@ void mvseq(int n, double m[][n], double x[n], double y[n])
 }
 
 void mvpar(int n, double m[][n], double x[n], double y[n])
-// FIXME: Initially identical to reference; make your changes to parallelize this code
 { int i,j,iter;
 
-  for(i=0;i<n;i++) { y[i]=0.0; }
+  // n is a multiple of 2, 4, 8, 16
+  int rows = n / nprocs;
+
+
+  double sbuff[rows], rbuff[n];
+  for(i = 0; i < rows; i++) { sbuff[i] = 0.0; }
   for(iter=0;iter<Niter;iter++)
-    {
-      for(i=0;i<n;i++)
-	for(j=0;j<n;j++)
-	  y[i] = y[i] + m[i][j]*x[j];
-      for (i=0; i<N; i++) x[i] = sqrt(y[i]);
-    }
+  {
+      int cnt = 0;
+      for(i = myid * rows; i < (myid + 1) * rows; i++) {
+	for(j = 0; j < n; j++) {
+	  sbuff[cnt] = sbuff[cnt] + m[i][j]*x[j];
+	}
+	cnt++;
+      }
+     
+      MPI_Allgather(&sbuff, rows, MPI_DOUBLE,
+		    &rbuff, rows, MPI_DOUBLE, MPI_COMM_WORLD);
+      /*
+      printf("myid = %d\n", myid);
+      for (int k = 0; k < n; k++) {
+        printf("sbuff[%d] = %lf\n", k, sbuff[k]);
+      }
+      */
+
+
+      for (i = 0; i < N; i++) x[i] = sqrt(rbuff[i]);
+  }
 }
 
 void compare(int n, double wref[n], double w[n])

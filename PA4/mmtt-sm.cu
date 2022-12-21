@@ -8,7 +8,7 @@
 #define FIXME2 2
 #define FIXME3 3
 #define FIXME4 4
-#define BLOCK_SIZE 16 
+#define BLOCK_SIZE 32 
 
 void checkCUDAError(const char *msg);
 
