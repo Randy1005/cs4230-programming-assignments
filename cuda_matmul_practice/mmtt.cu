@@ -2,54 +2,31 @@
 
 #include <stdio.h>
 #include <time.h>
-#include <assert.h>
 #define threshold 0.0000001
 #define FIXME1 1
 #define FIXME2 2
 #define FIXME3 3
 #define FIXME4 4
-#define TILE_SIZE 32 
 
 void checkCUDAError(const char *msg);
 
-const int DSIZE = 2048;
+const int DSIZE = 1024;
 cudaEvent_t start, stop;
 float tstart, elapsedTime;
 
 // matrix multiply kernel: C = A * B
 __global__ void mmul(const double *A, const double *B, double *C, int ds) {
-  int tx = threadIdx.x;
-  int ty = threadIdx.y;
-  int bx = blockIdx.x;
-  int by = blockIdx.y;
-  __shared__ double as[TILE_SIZE][TILE_SIZE];
-  __shared__ double bs[TILE_SIZE][TILE_SIZE];
+  int row = blockIdx.x * blockDim.x + threadIdx.x;
+  int col = blockIdx.y * blockDim.y + threadIdx.y;
+ 
+
   double sum = 0;
+  if ((row < ds) && (col < ds)) {
+    for (int k = 0; k < ds; k++) {
+      sum += A[k * ds + row] * B[col * DSIZE + k];
+    }
 
-  int a_begin = TILE_SIZE * by;
-  int b_begin = ds * TILE_SIZE * bx;
-  int a_idx = a_begin + ds * ty + tx;
-  int b_idx = b_begin + ds * ty + tx;
-
-  assert(a_idx < ds * ds); 
-  assert(b_idx < ds * ds); 
-
-  if ((tx < ds) && (ty < ds)) {
-    for (int kt = 0; kt < ds; kt+=TILE_SIZE) {
-      as[ty][tx] = A[a_idx];
-      bs[ty][tx] = B[b_idx];
-      __syncthreads();
-
-      for (int k = 0; k < TILE_SIZE; k++) {
-        sum += as[k][ty] * bs[tx][k];
-      }
-      __syncthreads();
-      a_idx += TILE_SIZE * ds;
-      b_idx += TILE_SIZE;
-    } 
-    
-    int c_begin = ds * TILE_SIZE * by + TILE_SIZE * bx;
-    C[c_begin + ds * ty + tx] = sum;
+    C[row * ds + col] = sum;
   }
 }
 
@@ -93,8 +70,8 @@ int main(){
   if ((Bx==0) or (By==0)) break;
   block.x = Bx;
   block.y = By;
-  grid.x = DSIZE / block.x;
-  grid.y = DSIZE / block.y;
+  grid.x = DSIZE / Bx;
+  grid.y = DSIZE / By;
 
   for(int trial=0;trial<5;trial++)
   {
