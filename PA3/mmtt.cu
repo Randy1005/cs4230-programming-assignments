@@ -16,7 +16,18 @@ float tstart, elapsedTime;
 
 // matrix multiply kernel: C = A * B
 __global__ void mmul(const double *A, const double *B, double *C, int ds) {
-// Enter GPU kernel code body
+  int row = blockIdx.x * blockDim.x + threadIdx.x;
+  int col = blockIdx.y * blockDim.y + threadIdx.y;
+ 
+
+  double sum = 0;
+  if ((row < ds) && (col < ds)) {
+    for (int k = 0; k < ds; k++) {
+      sum += A[k * ds + row] * B[col * DSIZE + k];
+    }
+
+    C[row * ds + col] = sum;
+  }
 }
 
 int main(){
@@ -57,10 +68,10 @@ int main(){
   printf("Specify TB-size-x,TB-size-y: ");
   scanf("%d %d", &Bx,&By);
   if ((Bx==0) or (By==0)) break;
-  block.x = FIXME1;
-  block.y = FIXME2;
-  grid.x = FIXME3;
-  grid.y = FIXME4;
+  block.x = Bx;
+  block.y = By;
+  grid.x = DSIZE / Bx;
+  grid.y = DSIZE / By;
 
   for(int trial=0;trial<5;trial++)
   {
