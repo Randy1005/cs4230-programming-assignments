@@ -3,11 +3,22 @@
 #include <chrono>
 
 
-#define BLOCK_SIZE 16
-// matrix multiplication GPU kernel
+// thread blocks of 32 x 8
+#define TILE_DIM 32
+#define BLOCK_ROWS 8
+
+
+
+// matrix transpose GPU kernel
 __global__ void mattranspose(const int *in, int *out, int N) {
+  int x = blockIdx.x * TILE_DIM + threadIdx.x;
+  int y = blockIdx.y * TILE_DIM + threadIdx.y;
 
+  int width = gridDim.x * TILE_DIM;
 
+  for (int k = 0; k < TILE_DIM; k+= BLOCK_ROWS) {
+    out[x * width + (y+k)] = in[(y+k) * width + x];
+  }
 
 }
 
@@ -70,8 +81,11 @@ int main(int argc, char* argv[]) {
   cudaMemcpy(d_a, h_a, bytes, cudaMemcpyHostToDevice);
   checkCUDAError("cuda memcpy H2D failure");
   
-  dim3 block(BLOCK_SIZE, BLOCK_SIZE);
-  dim3 grid(N / block.x, N / block.y);
+  dim3 block(TILE_DIM, BLOCK_ROWS);
+  // each thread block doesn't have to be all occupied
+  // in this case, thread block is 32 x 8
+  // but grid dimension is 32 x 32
+  dim3 grid(N / TILE_DIM, N / TILE_DIM);
   
   auto beg_gpu = std::chrono::steady_clock::now(); 
 
